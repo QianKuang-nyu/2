@@ -7,7 +7,8 @@ def webServer(port=13331):
 
     #Prepare a sever socket
     #Fill in start
-    serverSocket.bind(('127.0.0.1',port))
+    # serverSocket.bind(('127.0.0.1',port))
+    serverSocket.bind(('',port))
     serverSocket.listen(1)
     #Fill in end
 
@@ -41,15 +42,15 @@ def webServer(port=13331):
 
             connectionSocket.send("\r\n".encode())
             connectionSocket.close()
+
         except IOError:
             #Send response message for file not found (404)
             #Fill in start
             connectionSocket.send('HTTP/1.1 404 NOT FOUND\r\n'.encode())
-            # # A blank line is needed, otherwise not work
+            # A blank line is needed, otherwise not work
             connectionSocket.send('\r\n'.encode())
             # To output something
-            connectionSocket.send('<html><body> \
-            	Undefined Page</body></html>\r\n'.encode())
+            connectionSocket.send('<html><body> Undefined Page</body></html>\r\n'.encode())
 
             #Fill in end
 
